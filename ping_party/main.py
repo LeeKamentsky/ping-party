@@ -165,7 +165,7 @@ def main():
             t0 = time.time()
             min_t = t0 + 1000
             for k in d:
-                min_t = min(d[k]+t0, min_t)
+                min_t = min(d[k][1], min_t)
                 min_addr = k
             if not e.wait(min_t - t0):
                 # Somebody updated the dictionary in time, so proceed
