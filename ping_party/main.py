@@ -170,7 +170,9 @@ def main():
             if not e.wait(min_t - t0):
                 # Somebody updated the dictionary in time, so proceed
                 continue
-            logging.warning("%s heartbeat timed out" % min_addr)
+            logging.warning("%s heartbeat timed out" % str(min_addr))
+            logging.info("Timeout after %f sec, orig delta = %f sec" %
+                         (min_t -t0, d[min_addr][1] - d[min_addr][0]))
             #
             # There's a race here where the worst guy sends a message
             # while we are failing. Well, at worst we miss the next heartbeat
