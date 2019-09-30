@@ -161,6 +161,7 @@ def main():
     while True:
         if len(d) == 0:
             e.wait()
+            e.clear()
         else:
             t0 = time.time()
             min_t = t0 + 1000
@@ -169,6 +170,7 @@ def main():
                 min_addr = k
             if not e.wait(min_t - t0):
                 # Somebody updated the dictionary in time, so proceed
+                e.clear()
                 continue
             logging.warning("%s heartbeat timed out" % str(min_addr))
             logging.info("Timeout after %f sec, orig delta = %f sec" %
