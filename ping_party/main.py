@@ -165,12 +165,12 @@ def main():
             t0 = time.time()
             min_t = t0 + 1000
             for k in d:
-                min_t = min(d[k])
+                min_t = min(d[k]+t0, min_t)
                 min_addr = k
             if not e.wait(min_t - t0):
                 # Somebody updated the dictionary in time, so proceed
                 continue
-            logging.warining("%s heartbeat timed out" % min_addr)
+            logging.warning("%s heartbeat timed out" % min_addr)
             #
             # There's a race here where the worst guy sends a message
             # while we are failing. Well, at worst we miss the next heartbeat
